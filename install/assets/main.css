@@ -1,0 +1,161 @@
+
+*{
+    margin:0;
+    padding:0
+}
+body{
+    background-color:#000;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    height:100vh;
+    font-family:'Ubuntu', sans-serif;
+    color:green
+}
+h1{
+    font-size:38px;
+    padding:20px;
+    text-align:center;
+}
+.container{
+    width:70%;
+    background-color:rgba(255,255,255,.06);
+    padding:20px;
+}
+.row{
+    display:flex;
+    flex-wrap:wrap;
+    border-top:1px solid green;
+    border-bottom:1px solid green;
+    margin-bottom:25px;
+    background-color:rgba(255,255,255,.03);
+}
+.row:hover{
+    background-color:rgba(255,255,255,.06);
+}
+.group{
+    display:flex;
+    flex-direction:column;
+    padding: 25px;
+}
+label{
+    margin-bottom:10px;
+    cursor:pointer;
+}
+input,select{
+    background-color:rgba(0,255,0,.2);
+    padding:5px;
+    border:1px solid green;
+    color:#fff;
+    width:170px;
+}
+select option{
+    color:#444;
+}
+input::placeholder{
+    color:#AAB7B8;
+}
+button[type="submit"]{
+    background-color:green;
+    color:#fff;
+    padding:10px 30px 10px 30px;
+    border:0;
+    cursor:pointer;
+    display:block;
+    margin:0 auto 0 auto;
+}
+button[type="submit"]:hover{
+    background-color:darkgreen;
+}
+ul{
+    list-style-type:none;
+    padding:10px;
+    background-color:rgba(255,255,255,.03);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    margin-bottom:30px;
+    border-top:1px solid green;
+    border-bottom:1px solid green;
+}
+.active{
+    font-weight:bold;
+    color:lightgreen;
+}
+font{
+    padding:5px;
+    font-size:12px;
+}
+.log{
+    margin:15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:50%;
+}
+table{
+    border-collapse:collapse;
+}
+table thead th, table tbody td{
+    padding:5px;
+}
+table thead th{
+    border-bottom:1px solid darkgreen;
+}
+
+h5{
+    width: 28%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid green;
+    font-size: 14px;
+}
+.review{
+    flex-direction: column;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid green;
+    border-left: 1px solid green;
+    width: 70%;
+    padding: 15px 0 15px 15px;
+    margin: 0;
+    font-style: italic;
+    color: darkgreen;
+}
+.review li strong{
+    font-style: normal;
+    color: green;
+}
+.title-changes{
+    display: block;
+    width: 100%;
+    margin-left: 15px;
+    margin-top: 15px;
+    font-weight: bold;
+    font-style: italic;
+}
+code{
+    color: darkgreen;
+}
+
+
+.tooltip{
+    position: relative;
+    display: inline-block;
+} 
+.tooltip .tooltiptext {
+visibility: hidden;
+width: 120px;
+background-color: black;
+color: #fff;
+text-align: center;
+padding: 5px 0;
+border-radius: 6px;
+
+position: absolute;
+z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+visibility: visible;
+}
