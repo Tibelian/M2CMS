@@ -1,7 +1,7 @@
 <?php
 
 // devuelve array asociativo del json
-function getJson($fileName){
+function getSettings($fileName){
     $file = __DIR__ . "/Settings/$fileName.json";
     if(file_exists($file)){
         return json_decode(file_get_contents($file), true);
@@ -11,7 +11,7 @@ function getJson($fileName){
 }
 
 // guarda array asociativo en archivo json
-function saveJson($fileName, $data){
+function setSettings($fileName, $data){
     $file = __DIR__ . "/Settings/$fileName.json";
     return file_put_contents($file, json_encode($data));
 }

@@ -1,7 +1,7 @@
 <?php
 
 // funciones básicas
-require __DIR__ . '/functions.php';
+require __DIR__ . '/Functions.php';
 
 // clases para controlar de una forma más eficiente 
 // las alertas, las sesiones y las plantillas / vistas
@@ -21,16 +21,17 @@ require __DIR__ . '/Model/Guild.php';
 require __DIR__ . '/Vendor/Bramus/Router.php';
 
 // recoge información básica web
-$webSite = getJson('website');
+$webSite = getSettings('website');
 
 // constantes que usaremos muy seguido
 define('BASE_URL', $webSite['url']);
+define('THEME_URL', $webSite['url'] . '/Public/Theme/' . $webSite['theme'] . '');
 define('WEB_NAME', $webSite['title']);
 define('REAL_IP', $_SERVER[$webSite['proxy']]);
 
 // prepara el controlador y la vista
-Controller::setDirPath('Source/Controller');
-View::setDirPath('Public/Theme/' . $webSite['theme'] . '/View');
+Controller::setPath('Source/Controller/');
+View::setPath('Public/Theme/' . $webSite['theme'] . '/View/');
 
 // elimina variables ya que no nos harán falta
 unset($webSite);

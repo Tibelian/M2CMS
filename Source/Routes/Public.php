@@ -1,14 +1,11 @@
 <?php
 
 // datos por defecto
-if(
-    !isset($_SESSION['top5List']) || 
-    !isset($_SESSION['statics'])
-){
-    Controller::load('default/top5');
-    Controller::load('default/statics');
-    header('Refresh: 0');
-    exit;
+if(!isset($_SESSION['top5List'])){
+    include Controller::get('default/top5');
+}
+if(!isset($_SESSION['statics'])){
+    include Controller::get('default/statics');
 }
 
 ///////////////
@@ -16,8 +13,7 @@ if(
 ///////////////
 $router->set404(function(){
     header('HTTP/1.1 404 Not Found');
-    View::setFile('404');
-    View::load();
+    include View::get('404');
 });
 
 //////////////////
@@ -29,18 +25,18 @@ $router->get('/', function(){
         isset($_SESSION['mainText']) && 
         isset($_SESSION['socialMedia'])
     ){
-        View::setFile('news/list');
-        View::load();
+        include View::get('LandPage');
         unset(
             $_SESSION['articleList'], 
             $_SESSION['mainText'],
             $_SESSION['socialMedia']
         );
     }else{
-        Controller::load('news/list');
-        Controller::load('other/mainText');
-        Controller::load('other/socialMedia');
-        header('Location: ' . BASE_URL . '/');
+        Controller::setRedirect(false);
+        include Controller::get('news/list');
+        include Controller::get('other/mainText');
+        include Controller::get('other/socialMedia');
+        header('Location: ' . $_SERVER['REQUEST_URI']);
         exit;
     }
 });
@@ -50,11 +46,11 @@ $router->get('/', function(){
 //////////////
 $router->get('/download', function(){
     if(isset($_SESSION['downloadList']) && isset($_SESSION['text'])){
-        View::setFile('download/list');
-        View::load();
+        include View::get('download/list');
+    
         unset($_SESSION['downloadList'], $_SESSION['text']);
     }else{
-        Controller::load('download/list');
+        include Controller::get('download/list');
         header('Location: ' . BASE_URL . '/download');
         exit;
     }
@@ -68,38 +64,38 @@ $router->get('/media', function(){
 });
 $router->get('/media/images', function(){
     if(isset($_SESSION['imageList'])){
-        View::setFile('media/images');
-        View::load();
+        include View::get('media/images');
+    
         unset($_SESSION['imageList']);
     }else{
-        Controller::load('media/images');
+        include Controller::get('media/images');
         header('Location: ' . BASE_URL . '/media/images');
         exit;
     }
 });
 $router->get('/media/videos', function(){
-    View::setFile('media/videos');
-    View::load();
+    include View::get('media/videos');
+
 });
 
 //////////
 // NEWS //
 //////////
 $router->get('/news/(\w+)/(.*)', function($date, $title){
-    View::setFile('news/single');
-    View::load();
+    include View::get('news/single');
+
 });
 
 //////////////////////////
 // TERMS AND CONDITIONS //
 //////////////////////////
 $router->get('/terms', function(){
-    View::setFile('other/terms');
-    View::load();
+    include View::get('other/terms');
+
 });
 $router->get('/legal', function(){
-    View::setFile('other/legal');
-    View::load();
+    include View::get('other/legal');
+
 });
 
 /////////////
@@ -109,18 +105,15 @@ $router->get('/ranking', function(){
     header('Location: ' . BASE_URL . '/ranking/player');
 });
 $router->get('/ranking/players', function(){
-    View::setFile('ranking/players');
-    View::load();
+    include View::get('ranking/players');
 });
 $router->get('/ranking/guilds', function(){
-    View::setFile('ranking/guilds');
-    View::load();
+    include View::get('ranking/guilds');
 });
 
 //////////////////////
 // UNEXPECTED ERROR //
 //////////////////////
 $router->get('/error', function(){
-    View::setFile('other/error');
-    View::load();
+    include View::get('other/error');
 });

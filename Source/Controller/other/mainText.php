@@ -1,3 +1,8 @@
 <?php
 
-$_SESSION['mainText'] = getJson('language/' . Language::getIso() . '/text')['main'];
+$_SESSION['mainText'] = getSettings('Language/' . Language::getIso() . '/Text')['main'];
+
+if(Controller::getRedirect()){
+    header('Location: ' . $_SERVER['REQUEST_URI']);
+    exit;
+}
