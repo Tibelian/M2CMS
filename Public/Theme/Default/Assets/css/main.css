@@ -1,0 +1,36 @@
+
+/*
+detalles básicos
+*/
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.bg-opacity{
+    background-color: rgba(0, 0, 0, .7);
+}
+
+
+/*
+imagen de fondo
+*/
+.bg-fixed{
+    background-attachment: fixed;
+}
+.bg-image{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+body.bg-image::before{
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: -1;
+}

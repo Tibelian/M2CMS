@@ -13,7 +13,7 @@ if(!isset($_SESSION['statics'])){
 ///////////////
 $router->set404(function(){
     header('HTTP/1.1 404 Not Found');
-    include View::get('404');
+    include View::get('Partials/404');
 });
 
 //////////////////
@@ -46,7 +46,7 @@ $router->get('/', function(){
 //////////////
 $router->get('/download', function(){
     if(isset($_SESSION['downloadList']) && isset($_SESSION['text'])){
-        include View::get('download/list');
+        include View::get('Download');
     
         unset($_SESSION['downloadList'], $_SESSION['text']);
     }else{
@@ -64,7 +64,7 @@ $router->get('/media', function(){
 });
 $router->get('/media/images', function(){
     if(isset($_SESSION['imageList'])){
-        include View::get('media/images');
+        include View::get('Media/Images');
     
         unset($_SESSION['imageList']);
     }else{
@@ -74,7 +74,7 @@ $router->get('/media/images', function(){
     }
 });
 $router->get('/media/videos', function(){
-    include View::get('media/videos');
+    include View::get('Media/Videos');
 
 });
 
@@ -82,33 +82,30 @@ $router->get('/media/videos', function(){
 // NEWS //
 //////////
 $router->get('/news/(\w+)/(.*)', function($date, $title){
-    include View::get('news/single');
-
+    include View::get('News/Single');
 });
 
 //////////////////////////
 // TERMS AND CONDITIONS //
 //////////////////////////
 $router->get('/terms', function(){
-    include View::get('other/terms');
-
+    include View::get('Other/Terms');
 });
 $router->get('/legal', function(){
-    include View::get('other/legal');
-
+    include View::get('Other/Legal');
 });
 
 /////////////
 // RANKING //
 /////////////
 $router->get('/ranking', function(){
-    header('Location: ' . BASE_URL . '/ranking/player');
+    header('Location: ' . BASE_URL . '/ranking/players');
 });
 $router->get('/ranking/players', function(){
-    include View::get('ranking/players');
+    include View::get('Ranking/Players');
 });
 $router->get('/ranking/guilds', function(){
-    include View::get('ranking/guilds');
+    include View::get('Ranking/Guilds');
 });
 
 //////////////////////

@@ -1,4 +1,4 @@
 <?php
 
-$_SESSION['downloadList'] = getJson('download');
-$_SESSION['text'] = getJson('language/' . Language::getIso() . '/text');
+$_SESSION['downloadList'] = getSettings('download');
+$_SESSION['text'] = getSettings('language/' . Language::getIso() . '/text');

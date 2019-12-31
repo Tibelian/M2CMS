@@ -7,18 +7,10 @@ $router->get('/login', function(){
     header('Location: ' . BASE_URL . '/user/login');
 });
 $router->get('/user/login', function(){
-    View::setFile('user/login');
-    View::load();
+    include View::get('User/Login');
 });
 $router->post('/user/login', function(){
-    Controller::load('user/login');
-    if(Session::getLoggedIn()){
-        header('Location: ' . BASE_URL . '/user');
-        exit;
-    }else{
-        header('Location: ' . BASE_URL . '/user/login');
-        exit;
-    }
+    include Controller::get('user/login');
 });
 
 ///////////////////
@@ -28,14 +20,7 @@ $router->get('/register', function(){
     header('Location: ' . BASE_URL . '/user/register');
 });
 $router->get('/user/register', function(){
-    if(isset($_SESSION['socialMedia'])){
-        View::setFile('user/register');
-        View::load();
-    }else{
-        Controller::load('other/socialMedia');
-        header('Location: ' . BASE_URL . '/user/register');
-        exit;
-    }
+    include View::get('User/Register');
 });
 
 ////////////////////
@@ -45,8 +30,7 @@ $router->get('/lost', function(){
     header('Location: ' . BASE_URL . '/user/lost');
 });
 $router->get('/user/lost', function(){
-    View::setFile('user/lost');
-    View::load();
+    include View::get('User/Lost');
 });
 
 ////////////////////////////
@@ -56,6 +40,5 @@ $router->get('/recover', function(){
     header('Location: ' . BASE_URL . '/user/recover');
 });
 $router->get('/user/recover', function(){
-    View::setFile('user/recover');
-    View::load();
+    include View::get('User/Recover');
 });
