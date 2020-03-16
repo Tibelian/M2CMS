@@ -1,0 +1,8 @@
+{
+    "title": "Metin2",
+    "description": "Metin2",
+    "url": "http://localhost/dev/m2cms-test",
+    "theme": "default",
+    "lang": "es",
+    "cache": 2000
+}

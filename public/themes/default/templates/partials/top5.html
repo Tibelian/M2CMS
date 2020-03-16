@@ -1,0 +1,31 @@
+
+<table class="table table-sm table-dark bg-opacity table-striped table-borderless">
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ website.language['name'] }}</th>
+            <th scope="col">{{ website.language['level'] }}</th>
+            <th scope="col">{{ website.language['empire'] }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% set count = 0 %}
+        {% for player in status.ranking %}
+            {% set count = count + 1 %}
+            <tr>
+                <td scope="row">{{ count }}</td>
+                <td>{{ player['name'] }}</td>
+                <td>{{ player['level'] }}</td>
+                <td>{{ player['empire'] }}</td>
+            </tr>
+        {% else %}
+        <tr>
+            <td colspan="4" class="text-center">NO HAY JUGADORES</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+

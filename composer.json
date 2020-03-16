@@ -1,0 +1,13 @@
+{
+    "name": "Metin2 CMS",
+    "description": "El sistema de gestión de contenidos de metin2 con varias plantillas. Utilizando MVC, Router, ORM y templates",
+    "require": {
+        "twig/twig": "3.0",
+        "bramus/router": "~1.4",
+        "doctrine/orm": "^2.6.2",
+        "symfony/yaml": "2.*"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
+    }
+}

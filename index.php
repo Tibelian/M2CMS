@@ -1,34 +1,47 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+require 'src/website.php';
+require 'src/models/user.php';
 
-// configuración por defecto
-require 'Source/Core.php';
 
-////////////////////
-ob_start();       //
-session_start();  //
-////////////////////
+try{
 
-// ROUTER: se obtienen enlaces sencillos
-$router = new \Bramus\Router\Router();
+    // init website
+    $configFile = 'config/website.json';
+    $config = json_decode(file_get_contents($configFile), true);
+    $website = new WebSite($config);
 
-// SESSION: usado para gestionar al usuario
-Session::reload();
 
-// si el usuario ha iniciado sesión podrá acceder a diferentes vistas
-include 'Source/Routes/Public.php';
-if(Session::isLoggedIn()){
-	include 'Source/Routes/LoggedIn.php';
-	if(Session::getUser()->getWebAdmin() > 0){
-		include 'Source/Routes/Administrator.php';
-	}
-}else{
-	include 'Source/Routes/LoggedOut.php';
+    // init user
+    $user = new User();
+    if(isset($_SESSION['user'])){
+        $user = $_SESSION['user'];
+    }
+
+
+    // manage routes
+    $router = $website->getRouter();
+    include 'src/routes/public.php';
+    if($user->isLoggedIn()){
+        include 'src/routes/user.php';
+        if($user->getAccount()->getWebAdmin() > 1){
+            include 'src/routes/admin.php';
+        }
+    }else{
+        include 'src/routes/guest.php';
+    }
+
+    $router->run();
+
+}catch(WebSiteException $we){
+    
+    echo "CLASS: WebSiteException <br>";
+    echo "ERROR: " . $we->getMessage() . "<br>";
+    echo "LOCATION: " . $we->getLocation() . "<br>";
+
+}catch(Exception $e){
+    
+    echo "CLASS: " . get_class($e) . "<br>";
+    echo "ERROR: " . $e->getMessage() . "<br>";
+
 }
-
-////////////////////
-$router->run();   //
-ob_end_flush();   //
-////////////////////

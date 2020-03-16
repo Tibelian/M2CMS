@@ -1,0 +1,38 @@
+{
+    "iso": "es",
+    "lang": "Español",
+    
+    "title-welcome": "Bienvenido al mejor servidor web",
+
+    "login-form": "Iniciar sesión",
+    "server-status": "Estado servidor",
+    "top5-players": "Top 5 jugadores",
+    "top5-guilds": "Top 5 gremios",
+
+
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "home": "Inicio",
+    "download": "Descagar",
+    "register": "Crear cuenta",
+    "ranking": "Clasificación",
+    "forum": "Foro",
+
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "login": "Entrar",
+    "register-now": "Registrarse",
+    "lost-pw": "Clave olvidada",
+
+    "online-players": "Jugadores online",
+    "online-players24": "Jugadores online 24h",
+    "total-accounts": "Total cuentas",
+    "total-guilds": "Total gremios",
+
+    "name": "Nombre",
+    "level": "Nivel",
+    "empire": "Reino",
+
+    "": ""
+
+}
